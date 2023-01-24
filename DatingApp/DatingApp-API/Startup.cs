@@ -30,6 +30,12 @@ namespace DatingApp_API
         {
             services.AddDbContext<DataContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
+            services.AddCors();
+            //services.AddCors(p => p.AddPolicy("corsapp", builder =>
+            //{
+            //    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+            //}));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DatingApp_API", Version = "v1" });
@@ -49,7 +55,7 @@ namespace DatingApp_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
