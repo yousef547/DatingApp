@@ -21,7 +21,6 @@ D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\D
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Microsoft.OpenApi.dll
-D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -58,3 +57,5 @@ D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\D
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\obj\Debug\net5.0\DatingApp-API.pdb
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\obj\Debug\net5.0\DatingApp-API.genruntimeconfig.cache
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\obj\Debug\net5.0\ref\DatingApp-API.dll
+D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Annotations.dll
