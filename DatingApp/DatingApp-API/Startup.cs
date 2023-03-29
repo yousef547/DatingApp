@@ -48,29 +48,29 @@ namespace DatingApp_API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DatingApp_API", Version = "v1" });
-                //c.AddSecurityDefinition(JwtAuthenticationDefaults.AuthenticationScheme, new OpenApiSecurityScheme
-                //{
-                //    In = ParameterLocation.Header,
-                //    Description = "Please enter a valid token",
-                //    Name = JwtAuthenticationDefaults.HeaderName,
-                //    Type = SecuritySchemeType.Http,
-                //    BearerFormat = "JWT",
-                //    Scheme = "Bearer"
-                //});
-                //c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                //{
-                //    {
-                //        new OpenApiSecurityScheme
-                //        {
-                //            Reference = new OpenApiReference
-                //            {
-                //                Type=ReferenceType.SecurityScheme,
-                //                Id=JwtAuthenticationDefaults.AuthenticationScheme
-                //            }
-                //        },
-                //        new List<string>()
-                //    }
-                //});
+                c.AddSecurityDefinition(JwtAuthenticationDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please enter a valid token",
+                    Name = JwtAuthenticationDefaults.HeaderName,
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type=ReferenceType.SecurityScheme,
+                                Id=JwtAuthenticationDefaults.AuthenticationScheme
+                            }
+                        },
+                        new List<string>()
+                    }
+                });
             });
         }
 

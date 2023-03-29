@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "3E7l+yyK3aYxSXkxgyyaqjgc6h1zkudvkWaZIatQFE1Ypf7kRq2UnKaPc2JkUQLOSZmv+l/2gPBVRcx/iegfiw==",
+  "dgSpecHash": "a9V/yl5TUwWGr2Hhkv/khOWhjTCY8upuqfE8f8xEY8cfB50KzYM2TeGaz9+Th3Vzbpon0o8mCkGzOpM3ylV0hw==",
   "success": true,
-  "projectFilePath": "D:\\New folder\\Build an app with ASPNET Core and Angular from scratch\\DatingApp\\DatingApp\\DatingApp-API\\DatingApp-API.csproj",
+  "projectFilePath": "D:\\New folder\\Build an app with ASPNET Core and Angular from scratch\\DatingApp\\DatingApp\\DatingApp\\DatingApp-API\\DatingApp-API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\AL_hamd\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
+    "C:\\Users\\AL_hamd\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
     "C:\\Users\\AL_hamd\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\AL_hamd\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.17\\microsoft.aspnetcore.authentication.jwtbearer.5.0.17.nupkg.sha512",
     "C:\\Users\\AL_hamd\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
@@ -70,7 +72,7 @@
     "C:\\Users\\AL_hamd\\.nuget\\packages\\system.private.datacontractserialization\\4.3.0\\system.private.datacontractserialization.4.3.0.nupkg.sha512",
     "C:\\Users\\AL_hamd\\.nuget\\packages\\system.private.uri\\4.3.2\\system.private.uri.4.3.2.nupkg.sha512",
     "C:\\Users\\AL_hamd\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
-    "C:\\Users\\AL_hamd\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
+    "C:\\Users\\AL_hamd\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\AL_hamd\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
     "C:\\Users\\AL_hamd\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
     "C:\\Users\\AL_hamd\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
