@@ -21,6 +21,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { MemberListComponent } from './member/member-list/member-list.component';
 import { MemberCardComponent } from './member/member-card/member-card.component';
 import { MemberDetailsComponent } from './member/member-details/member-details.component';
+import { MemberEditComponent } from './member/member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { MemberDetailsComponent } from './member/member-details/member-details.c
     ServerErrorComponent,
     MemberListComponent,
     MemberCardComponent,
-    MemberDetailsComponent
+    MemberDetailsComponent,
+    MemberEditComponent,
+    
   ],
   imports: [
     BrowserModule,
