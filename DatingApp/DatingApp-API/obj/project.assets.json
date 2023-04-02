@@ -5659,11 +5659,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\New folder\\Build an app with ASPNET Core and Angular from scratch\\DatingApp\\DatingApp\\DatingApp\\DatingApp-API\\DatingApp-API.csproj",
+      "projectUniqueName": "D:\\New folder\\Build an app with ASPNET Core and Angular from scratch\\DatingApp\\DayingApp v-2\\DatingApp\\DatingApp\\DatingApp-API\\DatingApp-API.csproj",
       "projectName": "DatingApp-API",
-      "projectPath": "D:\\New folder\\Build an app with ASPNET Core and Angular from scratch\\DatingApp\\DatingApp\\DatingApp\\DatingApp-API\\DatingApp-API.csproj",
+      "projectPath": "D:\\New folder\\Build an app with ASPNET Core and Angular from scratch\\DatingApp\\DayingApp v-2\\DatingApp\\DatingApp\\DatingApp-API\\DatingApp-API.csproj",
       "packagesPath": "C:\\Users\\AL_hamd\\.nuget\\packages\\",
-      "outputPath": "D:\\New folder\\Build an app with ASPNET Core and Angular from scratch\\DatingApp\\DatingApp\\DatingApp\\DatingApp-API\\obj\\",
+      "outputPath": "D:\\New folder\\Build an app with ASPNET Core and Angular from scratch\\DatingApp\\DayingApp v-2\\DatingApp\\DatingApp\\DatingApp-API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\DevExpress 22.2\\Components\\Offline Packages"

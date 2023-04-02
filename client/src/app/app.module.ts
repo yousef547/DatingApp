@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -21,6 +20,9 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { MemberListComponent } from './member/member-list/member-list.component';
 import { MemberCardComponent } from './member/member-card/member-card.component';
 import { MemberDetailsComponent } from './member/member-details/member-details.component';
+import { MemberEditComponent } from './member/member-edit/member-edit.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_inerceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { MemberDetailsComponent } from './member/member-details/member-details.c
     ServerErrorComponent,
     MemberListComponent,
     MemberCardComponent,
-    MemberDetailsComponent
+    MemberDetailsComponent,
+    MemberEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,11 +46,14 @@ import { MemberDetailsComponent } from './member/member-details/member-details.c
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    NgxSpinnerModule
 
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })
