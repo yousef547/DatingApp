@@ -27,7 +27,7 @@ namespace DatingApp_API.Controllers
         private readonly IPhotoService _photoService;
 
 
-        public UsersController(IUserRepository userRepository,IMapper mapper,IPhotoService photoService)
+        public UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService)
         {
             _userRepository = userRepository;
             _mapper = mapper;
@@ -83,6 +83,41 @@ namespace DatingApp_API.Controllers
             }
             return BadRequest("Problem adding photo");
         }
+
+        [HttpPut("set-main-photo/{photoId}")]
+        public async Task<ActionResult> SetMainPhoto(int photoId)
+        {
+            var user = await _userRepository.GetUserByUserNameAsync(User.GetUsername());
+            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+            if (photo.IsMain) return BadRequest("This is aleady Your main photo");
+            var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
+            if (currentMain != null) currentMain.IsMain = false;
+            photo.IsMain = true;
+            if (await _userRepository.SaveAllAsync())
+            {
+                return NoContent();
+            }
+            return BadRequest("Failed To Set main Photo");
+        }
+
+        [HttpDelete("delete-photo/{photoId}")]
+        public async Task<ActionResult> DeletePhoto(int photoId)
+        {
+            var user = await _userRepository.GetUserByUserNameAsync(User.GetUsername());
+            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+            if (photo == null) return NotFound();
+            if (photo.IsMain) return BadRequest("You Cannotdelete Your Main Photo");
+            if (photo.PublicId != null)
+            {
+                var result = await _photoService.DeletePhotoAsync(photo.PublicId);
+                if (result.Error != null) return BadRequest(result.Error.Message);
+            }
+
+            user.Photos.Remove(photo);
+            if(await _userRepository.SaveAllAsync()) return Ok();
+            return BadRequest("Filed To Delete Your Photo");
+        }
+
 
     }
 }
