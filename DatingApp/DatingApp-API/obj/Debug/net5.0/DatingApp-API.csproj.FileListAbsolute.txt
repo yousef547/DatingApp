@@ -187,3 +187,5 @@ D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\D
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DayingApp v-2\DatingApp\DatingApp\DatingApp-API\obj\Debug\net5.0\DatingApp-API.pdb
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DayingApp v-2\DatingApp\DatingApp\DatingApp-API\obj\Debug\net5.0\DatingApp-API.genruntimeconfig.cache
 D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DayingApp v-2\DatingApp\DatingApp\DatingApp-API\obj\Debug\net5.0\ref\DatingApp-API.dll
+D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DayingApp v-2\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\CloudinaryDotNet.dll
+D:\New folder\Build an app with ASPNET Core and Angular from scratch\DatingApp\DayingApp v-2\DatingApp\DatingApp\DatingApp-API\bin\Debug\net5.0\Newtonsoft.Json.dll
