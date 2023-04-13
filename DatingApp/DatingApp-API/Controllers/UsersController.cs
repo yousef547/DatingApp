@@ -15,6 +15,7 @@ using API.DTOs;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using DatingApp_API.Extensions;
+using DatingApp_API.Helpers;
 
 namespace DatingApp_API.Controllers
 {
@@ -34,11 +35,12 @@ namespace DatingApp_API.Controllers
             _photoService = photoService;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
         {
-            var membersDto = await _userRepository.GetMembersAsync();
+            var users = await _userRepository.GetMembersAsync(userParams);
 
-            return Ok(membersDto);
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+            return Ok(users);
         }
 
         [HttpGet("{username}", Name = "GetUser")]
