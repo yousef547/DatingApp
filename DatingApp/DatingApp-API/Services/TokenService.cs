@@ -21,7 +21,8 @@ namespace DatingApp_API.Services
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.NameId, usser.UserName)
+                new Claim(JwtRegisteredClaimNames.NameId, usser.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.UniqueName, usser.UserName),
 
             };
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

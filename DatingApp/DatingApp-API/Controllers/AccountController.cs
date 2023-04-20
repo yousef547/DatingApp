@@ -41,7 +41,9 @@ namespace DatingApp_API.Controllers
             return new UserDto
             {
                 Username = user.UserName, 
-                Token=_itokenService.CreateToken(user)
+                Token=_itokenService.CreateToken(user),
+                KnownAs = user.KnownAs,
+                Gender = user.Gender,
             };
         }
 
@@ -60,7 +62,9 @@ namespace DatingApp_API.Controllers
             {
                 Username = user.UserName,
                 Token = _itokenService.CreateToken(user),
-                PhotoUrl = user.Photos.FirstOrDefault(c => c.IsMain)?.Url
+                PhotoUrl = user.Photos.FirstOrDefault(c => c.IsMain)?.Url,
+                KnownAs = user.KnownAs,
+                Gender = user.Gender,
             };
         }
 
