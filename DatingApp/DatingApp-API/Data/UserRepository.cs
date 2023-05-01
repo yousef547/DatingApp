@@ -4,6 +4,7 @@ using DatingApp_API.DTOs;
 using DatingApp_API.Entities;
 using DatingApp_API.Helpers;
 using DatingApp_API.Interface;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DatingApp_API.Data
 {
-    public class UserRepository: IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
@@ -21,21 +22,22 @@ namespace DatingApp_API.Data
         {
             _context = context;
             _mapper = mapper;
+
         }
 
         public async Task<MemberDto> GetMemberAsync(string username)
         {
-            return await _context.AppUsers.Where(u=>u.UserName == username)
+            return await _context.Users.Where(u => u.UserName == username)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
 
         public async Task<PageList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
-            var query = _context.AppUsers.AsQueryable();
+            var query = _context.Users.AsQueryable();
             query = query.Where(u => u.UserName != userParams.CurrentUsername);
             query = query.Where(u => u.Gender == userParams.Gender);
-            var minDob = DateTime.Today.AddYears(-userParams.MaxAge -1);
+            var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
             var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
             query = query.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
             query = userParams.OrderBy switch
@@ -48,18 +50,18 @@ namespace DatingApp_API.Data
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
-           return await _context.AppUsers.FindAsync(id);
+            return await _context.Users.FindAsync(id);
         }
 
         public async Task<AppUser> GetUserByUserNameAsync(string username)
         {
-            return await _context.AppUsers.Include(x => x.Photos).SingleOrDefaultAsync(x=>x.UserName == username);
+            return await _context.Users.Include(x => x.Photos).SingleOrDefaultAsync(x => x.UserName == username);
 
         }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
-            return await _context.AppUsers.Include(x=>x.Photos).ToListAsync();
+            return await _context.Users.Include(x => x.Photos).ToListAsync();
         }
 
         public async Task<bool> SaveAllAsync()

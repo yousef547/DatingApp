@@ -39,15 +39,15 @@ namespace DatingApp_API.Data
 
         public async Task<PageList<LikeDto>> GetUserLikes(LikesParams likesParams)
         {
-            var users = _context.AppUsers.OrderBy(u=>u.UserName).AsQueryable();
+            var users = _context.Users.OrderBy(u => u.UserName).AsQueryable();
             var likes = _context.Likes.AsQueryable();
-            if(likesParams.Predicate == "liked")
+            if (likesParams.Predicate == "liked")
             {
                 likes = likes.Where(like => like.SourceUserId == likesParams.UserId);
                 users = likes.Select(like => like.LikedUser);
             }
 
-            if(likesParams.Predicate == "likedBy")
+            if (likesParams.Predicate == "likedBy")
             {
                 likes = likes.Where(like => like.LikedUserId == likesParams.UserId);
                 users = likes.Select(like => like.SourceUser);
@@ -67,7 +67,7 @@ namespace DatingApp_API.Data
 
         public async Task<AppUser> GetUserWithLikes(int UserId)
         {
-            return await _context.AppUsers
+            return await _context.Users
                  .Include(x => x.LikedByUsers)
                  .FirstOrDefaultAsync(x => x.Id == UserId);
         }

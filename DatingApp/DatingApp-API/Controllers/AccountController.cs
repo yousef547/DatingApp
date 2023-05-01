@@ -2,6 +2,7 @@
 using DatingApp_API.DTOs;
 using DatingApp_API.Entities;
 using DatingApp_API.Interface;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -13,13 +14,17 @@ namespace DatingApp_API.Controllers
 {
     public class AccountController : BaseApiController
     {
-        private readonly DataContext _context;
         private readonly ITokenService _itokenService;
-        public AccountController(DataContext context,
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+
+        public AccountController(UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
             ITokenService TokenService)
         {
-            _context = context;
             _itokenService = TokenService;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         [HttpPost("register")]
@@ -29,19 +34,21 @@ namespace DatingApp_API.Controllers
             {
                 return BadRequest("Username is taken");
             }
-            using var hmac = new HMACSHA512();
+            //using var hmac = new HMACSHA512();
             var user = new AppUser
             {
                 UserName = registerDTO.Username.ToLower(),
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
-                PasswordSalt = hmac.Key
+                //PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
+                //PasswordSalt = hmac.Key
             };
-            _context.AppUsers.Add(user);
-            await _context.SaveChangesAsync();
+            var result = await _userManager.CreateAsync(user,registerDTO.Password);
+            if (!result.Succeeded) return BadRequest(result.Errors);
+            var roleResult = await _userManager.AddToRoleAsync(user, "Member");
+            if(!roleResult.Succeeded) return BadRequest(result.Errors);
             return new UserDto
             {
                 Username = user.UserName, 
-                Token=_itokenService.CreateToken(user),
+                Token=await _itokenService.CreateToken(user),
                 KnownAs = user.KnownAs,
                 Gender = user.Gender,
             };
@@ -50,18 +57,16 @@ namespace DatingApp_API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> login(LoginDto loginDto)
         {
-            var user = await _context.AppUsers.Include(x=>x.Photos).SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
+            var user = await _userManager.Users.Include(x=>x.Photos)
+                .SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
             if (user == null) return Unauthorized("Invalid username");
-            using var hmac = new HMACSHA512(user.PasswordSalt);
-            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
-            for (int i = 0; i < computedHash.Length; i++)
-            {
-                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
-            }
+            var result = await _signInManager
+                .CheckPasswordSignInAsync(user,loginDto.Password,false);
+            if(!result.Succeeded) return Unauthorized();
             return new UserDto
             {
                 Username = user.UserName,
-                Token = _itokenService.CreateToken(user),
+                Token = await _itokenService.CreateToken(user),
                 PhotoUrl = user.Photos.FirstOrDefault(c => c.IsMain)?.Url,
                 KnownAs = user.KnownAs,
                 Gender = user.Gender,
@@ -70,7 +75,7 @@ namespace DatingApp_API.Controllers
 
         private async Task<bool> UserExists(string userName)
         {
-            return await _context.AppUsers.AnyAsync(x => x.UserName == userName.ToLower());
+            return await _userManager.Users.AnyAsync(x => x.UserName == userName.ToLower());
         }
     }
 }
